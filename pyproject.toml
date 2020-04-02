@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "crashtest"
-version = "0.2.1"
+version = "0.3.0"
 description = "Manage Python errors with ease"
 authors = ["Sébastien Eustace <sebastien@eustace.io>"]
 license = "MIT"
