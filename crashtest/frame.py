@@ -1,6 +1,6 @@
 import inspect
 
-from types import TracebackType
+from types import FrameType
 from typing import Dict
 
 
@@ -17,7 +17,7 @@ class Frame:
         self._file_content = None
 
     @property
-    def frame(self) -> TracebackType:
+    def frame(self) -> FrameType:
         return self._frame
 
     @property
@@ -34,6 +34,9 @@ class Frame:
 
     @property
     def line(self) -> str:
+        if not self._frame_info.code_context:
+            return ""
+
         return self._frame_info.code_context[0]
 
     @property

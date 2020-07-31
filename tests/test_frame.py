@@ -35,3 +35,9 @@ def test_frame():
     assert other_frame != frame
     assert hash(same_frame) == hash(frame)
     assert hash(other_frame) != hash(frame)
+
+
+def test_frame_with_no_context_should_return_empty_line():
+    frame = Frame(inspect.FrameInfo(None, "filename.py", 123, "function", None, 3))
+
+    assert "" == frame.line
