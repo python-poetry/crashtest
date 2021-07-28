@@ -47,7 +47,7 @@ class Frame:
             else:
                 if self._filename not in self.__class__._content_cache:
                     try:
-                        with open(self._filename) as f:
+                        with open(self._filename, encoding='utf-8') as f:
                             file_content = f.read()
                     except OSError:
                         file_content = ""
