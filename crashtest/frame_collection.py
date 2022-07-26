@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-from .frame import Frame
+from typing import TYPE_CHECKING
+
+
+if TYPE_CHECKING:
+    from crashtest.frame import Frame
 
 
 class FrameCollection(list):

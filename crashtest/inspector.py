@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import inspect
 
-from .frame import Frame
-from .frame_collection import FrameCollection
+from crashtest.frame import Frame
+from crashtest.frame_collection import FrameCollection
 
 
 class Inspector:

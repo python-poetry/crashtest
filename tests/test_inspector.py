@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 from crashtest.inspector import Inspector
-
-from .helpers import nested_exception
-from .helpers import recursive_exception
-from .helpers import simple_exception
+from tests.helpers import nested_exception
+from tests.helpers import recursive_exception
+from tests.helpers import simple_exception
 
 
 def test_inspector_with_simple_exception():

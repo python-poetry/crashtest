@@ -3,9 +3,8 @@ from __future__ import annotations
 import inspect
 
 from crashtest.frame import Frame
-
-from .helpers import nested_exception
-from .helpers import simple_exception
+from tests.helpers import nested_exception
+from tests.helpers import simple_exception
 
 
 def test_frame():

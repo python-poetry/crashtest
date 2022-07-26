@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from .solution import Solution
+from crashtest.contracts.solution import Solution
 
 
 class BaseSolution(Solution):

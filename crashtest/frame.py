@@ -1,8 +1,12 @@
 from __future__ import annotations
 
-import inspect
+from typing import TYPE_CHECKING
 
-from types import FrameType
+
+if TYPE_CHECKING:
+    import inspect
+
+    from types import FrameType
 
 
 class Frame:
