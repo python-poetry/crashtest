@@ -1,5 +1,5 @@
 [flake8]
-mi_python_version = 3.7.0
+min_python_version = 3.7.0
 max-line-length = 88
 ban-relative-imports = true
 format-greedy = 1
