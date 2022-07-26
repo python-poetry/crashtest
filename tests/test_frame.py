@@ -17,7 +17,7 @@ def test_frame() -> None:
         same_frame = Frame(frame_info)
         assert frame_info.frame == frame.frame
 
-    assert frame.lineno == 14
+    assert frame.lineno == 12
     assert frame.filename == __file__
     assert frame.function == "test_frame"
     assert frame.line == "        simple_exception()\n"
@@ -25,7 +25,7 @@ def test_frame() -> None:
     with open(__file__) as f:
         assert f.read() == frame.file_content
 
-    assert repr(frame) == f"<Frame {__file__}, test_frame, 14>"
+    assert repr(frame) == f"<Frame {__file__}, test_frame, 12>"
 
     try:
         nested_exception()
