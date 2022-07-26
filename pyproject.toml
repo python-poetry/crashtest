@@ -9,6 +9,10 @@ readme = "README.md"
 homepage = "https://github.com/sdispater/crashtest"
 repository = "https://github.com/sdispater/crashtest"
 
+include = [
+  { path = "crashtest/py.typed" },
+]
+
 [tool.poetry.dependencies]
 python = "^3.7"
 
