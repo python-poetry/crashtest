@@ -16,15 +16,15 @@ def test_frame():
         same_frame = Frame(frame_info)
         assert frame_info.frame == frame.frame
 
-    assert 11 == frame.lineno
-    assert __file__ == frame.filename
-    assert "test_frame" == frame.function
-    assert "        simple_exception()\n" == frame.line
+    assert frame.lineno == 11
+    assert frame.filename == __file__
+    assert frame.function == "test_frame"
+    assert frame.line == "        simple_exception()\n"
 
     with open(__file__) as f:
         assert f.read() == frame.file_content
 
-    assert f"<Frame {__file__}, test_frame, 11>" == repr(frame)
+    assert repr(frame) == f"<Frame {__file__}, test_frame, 11>"
 
     try:
         nested_exception()
@@ -41,4 +41,4 @@ def test_frame():
 def test_frame_with_no_context_should_return_empty_line():
     frame = Frame(inspect.FrameInfo(None, "filename.py", 123, "function", None, 3))
 
-    assert "" == frame.line
+    assert frame.line == ""
