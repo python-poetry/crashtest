@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import inspect
 
+from types import FrameType
+
 from crashtest.frame import Frame
 from tests.helpers import nested_exception
 from tests.helpers import simple_exception
@@ -11,6 +13,7 @@ def test_frame() -> None:
     try:
         simple_exception()
     except ValueError as e:
+        assert e.__traceback__ is not None
         frame_info = inspect.getinnerframes(e.__traceback__)[0]
         frame = Frame(frame_info)
         same_frame = Frame(frame_info)
@@ -29,6 +32,7 @@ def test_frame() -> None:
     try:
         nested_exception()
     except Exception as e:
+        assert e.__traceback__ is not None
         frame_info = inspect.getinnerframes(e.__traceback__)[0]
         other_frame = Frame(frame_info)
 
@@ -39,6 +43,8 @@ def test_frame() -> None:
 
 
 def test_frame_with_no_context_should_return_empty_line() -> None:
-    frame = Frame(inspect.FrameInfo(None, "filename.py", 123, "function", None, 3))
+    frame = Frame(
+        inspect.FrameInfo(FrameType(), "filename.py", 123, "function", None, 3)
+    )
 
     assert frame.line == ""

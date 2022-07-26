@@ -19,7 +19,7 @@ class Frame:
         self._filename = frame_info.filename
         self._function = frame_info.function
         self._lines = None
-        self._file_content = None
+        self._file_content: str | None = None
 
     @property
     def frame(self) -> FrameType:

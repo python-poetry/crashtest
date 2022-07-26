@@ -10,7 +10,7 @@ from crashtest.contracts.solution_provider_repository import (
 
 class SolutionProviderRepository(BaseSolutionProviderRepository):
     def __init__(self, solution_providers: list[type] | None = None) -> None:
-        self._solution_providers = []
+        self._solution_providers: list[type] = []
 
         if solution_providers is None:
             solution_providers = []
@@ -33,7 +33,7 @@ class SolutionProviderRepository(BaseSolutionProviderRepository):
         return self
 
     def get_solutions_for_exception(self, exception: Exception) -> list[Solution]:
-        solutions = []
+        solutions: list[Solution] = []
 
         if isinstance(exception, Solution):
             solutions.append(exception)
