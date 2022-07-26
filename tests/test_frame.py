@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import inspect
 
 from crashtest.frame import Frame

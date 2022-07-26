@@ -1,11 +1,12 @@
+from __future__ import annotations
+
 import inspect
 
 from types import FrameType
-from typing import Dict
 
 
 class Frame:
-    _content_cache: Dict[str, str] = {}
+    _content_cache: dict[str, str] = {}
 
     def __init__(self, frame_info: inspect.FrameInfo) -> None:
         self._frame = frame_info.frame
@@ -63,7 +64,7 @@ class Frame:
     def __hash__(self) -> int:
         return hash(self._filename) ^ hash(self._function) ^ hash(self._lineno)
 
-    def __eq__(self, other: "Frame") -> bool:
+    def __eq__(self, other: Frame) -> bool:
         return (
             self._filename == other.filename
             and self._function == other.function

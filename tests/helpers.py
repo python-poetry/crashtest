@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 def simple_exception():
     raise ValueError("Simple Exception")
 

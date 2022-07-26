@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 
 from crashtest.contracts.base_solution import BaseSolution
 from crashtest.contracts.has_solutions_for_exception import HasSolutionsForException
@@ -13,7 +13,7 @@ class ExceptionSolutionProvider(HasSolutionsForException):
     def can_solve(self, exception: Exception) -> bool:
         return isinstance(exception, ExceptionProvidingException)
 
-    def get_solutions(self, exception: Exception) -> List[Solution]:
+    def get_solutions(self, exception: Exception) -> list[Solution]:
         return [
             BaseSolution("An exception solution", "An exception solution description")
         ]
@@ -38,7 +38,7 @@ class ExceptionWhichIsSolution(Exception, Solution):
         return "A solution description"
 
     @property
-    def documentation_links(self) -> List[str]:
+    def documentation_links(self) -> list[str]:
         return ["https://foo.bar"]
 
 

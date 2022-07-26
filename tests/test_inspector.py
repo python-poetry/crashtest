@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from crashtest.inspector import Inspector
 
 from .helpers import nested_exception

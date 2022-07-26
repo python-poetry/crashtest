@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 
 from .solution import Solution
 
@@ -18,5 +18,5 @@ class BaseSolution(Solution):
         return self._description
 
     @property
-    def documentation_links(self) -> List[str]:
+    def documentation_links(self) -> list[str]:
         return self._links

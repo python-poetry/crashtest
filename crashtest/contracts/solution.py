@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 
 
 class Solution:
@@ -11,5 +11,5 @@ class Solution:
         raise NotImplementedError()
 
     @property
-    def documentation_links(self) -> List[str]:
+    def documentation_links(self) -> list[str]:
         raise NotImplementedError()

@@ -1,6 +1,6 @@
-import inspect
+from __future__ import annotations
 
-from typing import Optional
+import inspect
 
 from .frame import Frame
 from .frame_collection import FrameCollection
@@ -43,7 +43,7 @@ class Inspector:
         return self._frames
 
     @property
-    def previous_exception(self) -> Optional[Exception]:
+    def previous_exception(self) -> Exception | None:
         return self._previous_exception
 
     def has_previous_exception(self) -> bool:
