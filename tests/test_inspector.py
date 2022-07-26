@@ -6,7 +6,7 @@ from tests.helpers import recursive_exception
 from tests.helpers import simple_exception
 
 
-def test_inspector_with_simple_exception():
+def test_inspector_with_simple_exception() -> None:
     try:
         simple_exception()
     except ValueError as e:
@@ -20,7 +20,7 @@ def test_inspector_with_simple_exception():
         assert len(inspector.frames) > 0
 
 
-def test_inspector_with_nested_exception():
+def test_inspector_with_nested_exception() -> None:
     try:
         nested_exception()
     except RuntimeError as e:
@@ -35,7 +35,7 @@ def test_inspector_with_nested_exception():
         assert len(inspector.frames.compact()) == 1
 
 
-def test_inspector_with_recursive_exception():
+def test_inspector_with_recursive_exception() -> None:
     try:
         recursive_exception()
     except RuntimeError as e:

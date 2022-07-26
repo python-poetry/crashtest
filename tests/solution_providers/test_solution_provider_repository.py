@@ -42,19 +42,19 @@ class ExceptionWhichIsSolution(Exception, Solution):
         return ["https://foo.bar"]
 
 
-def test_it_has_no_provider_by_default():
+def test_it_has_no_provider_by_default() -> None:
     repository = SolutionProviderRepository()
 
     assert len(repository._solution_providers) == 0
 
 
-def test_providers_can_be_passed_to_constructor():
+def test_providers_can_be_passed_to_constructor() -> None:
     repository = SolutionProviderRepository()
 
     assert len(repository._solution_providers) == 0
 
 
-def test_it_can_find_solutions():
+def test_it_can_find_solutions() -> None:
     repository = SolutionProviderRepository()
 
     repository.register_solution_provider(ExceptionSolutionProvider)

@@ -1,13 +1,15 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
+from typing import Any
 
 
 if TYPE_CHECKING:
+
     from crashtest.frame import Frame
 
 
-class FrameCollection(list):
+class FrameCollection(list[Any]):
     def __init__(self, frames: list[Frame] | None = None, count: int = 0) -> None:
         if frames is None:
             frames = []

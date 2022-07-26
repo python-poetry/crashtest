@@ -68,7 +68,9 @@ class Frame:
     def __hash__(self) -> int:
         return hash(self._filename) ^ hash(self._function) ^ hash(self._lineno)
 
-    def __eq__(self, other: Frame) -> bool:
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Frame):
+            raise NotImplementedError
         return (
             self._filename == other.filename
             and self._function == other.function

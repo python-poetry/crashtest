@@ -7,7 +7,7 @@ from tests.helpers import nested_exception
 from tests.helpers import simple_exception
 
 
-def test_frame():
+def test_frame() -> None:
     try:
         simple_exception()
     except ValueError as e:
@@ -38,7 +38,7 @@ def test_frame():
     assert hash(other_frame) != hash(frame)
 
 
-def test_frame_with_no_context_should_return_empty_line():
+def test_frame_with_no_context_should_return_empty_line() -> None:
     frame = Frame(inspect.FrameInfo(None, "filename.py", 123, "function", None, 3))
 
     assert frame.line == ""
