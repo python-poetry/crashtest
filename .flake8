@@ -1,7 +1,17 @@
 [flake8]
+min_python_version = 3.7.0
 max-line-length = 88
-ignore = E501, E203, W503
-per-file-ignores = __init__.py:F401
+ban-relative-imports = true
+format-greedy = 1
+inline-quotes = double
+enable-extensions = TC, TC1
+type-checking-exempt-modules = typing, typing-extensions
+eradicate-whitelist-extend = ^-.*;
+extend-ignore =
+    # E203: Whitespace before ':'
+    E203
+per-file-ignores =
+    __init__.py:F401
 exclude =
     .git
     __pycache__

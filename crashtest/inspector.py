@@ -1,15 +1,15 @@
+from __future__ import annotations
+
 import inspect
 
-from typing import Optional
-
-from .frame import Frame
-from .frame_collection import FrameCollection
+from crashtest.frame import Frame
+from crashtest.frame_collection import FrameCollection
 
 
 class Inspector:
     def __init__(self, exception: Exception):
         self._exception = exception
-        self._frames = None
+        self._frames: FrameCollection | None = None
         self._outer_frames = None
         self._inner_frames = None
         self._previous_exception = exception.__context__
@@ -43,7 +43,7 @@ class Inspector:
         return self._frames
 
     @property
-    def previous_exception(self) -> Optional[Exception]:
+    def previous_exception(self) -> BaseException | None:
         return self._previous_exception
 
     def has_previous_exception(self) -> bool:

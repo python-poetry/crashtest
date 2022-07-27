@@ -1,6 +1,4 @@
-from typing import List
-from typing import Optional
-from typing import Type
+from __future__ import annotations
 
 from crashtest.contracts.has_solutions_for_exception import HasSolutionsForException
 from crashtest.contracts.provides_solution import ProvidesSolution
@@ -11,8 +9,8 @@ from crashtest.contracts.solution_provider_repository import (
 
 
 class SolutionProviderRepository(BaseSolutionProviderRepository):
-    def __init__(self, solution_providers: Optional[List[Type]] = None) -> None:
-        self._solution_providers = []
+    def __init__(self, solution_providers: list[type] | None = None) -> None:
+        self._solution_providers: list[type] = []
 
         if solution_providers is None:
             solution_providers = []
@@ -20,22 +18,22 @@ class SolutionProviderRepository(BaseSolutionProviderRepository):
         self.register_solution_providers(solution_providers)
 
     def register_solution_provider(
-        self, solution_provider_class: Type
-    ) -> "SolutionProviderRepository":
+        self, solution_provider_class: type
+    ) -> SolutionProviderRepository:
         self._solution_providers.append(solution_provider_class)
 
         return self
 
     def register_solution_providers(
-        self, solution_provider_classes: List[Type]
-    ) -> "SolutionProviderRepository":
+        self, solution_provider_classes: list[type]
+    ) -> SolutionProviderRepository:
         for solution_provider_class in solution_provider_classes:
             self.register_solution_provider(solution_provider_class)
 
         return self
 
-    def get_solutions_for_exception(self, exception: Exception) -> List[Solution]:
-        solutions = []
+    def get_solutions_for_exception(self, exception: Exception) -> list[Solution]:
+        solutions: list[Solution] = []
 
         if isinstance(exception, Solution):
             solutions.append(exception)

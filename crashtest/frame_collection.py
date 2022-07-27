@@ -1,11 +1,16 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+from typing import Any
 from typing import List
-from typing import Optional
-
-from .frame import Frame
 
 
-class FrameCollection(list):
-    def __init__(self, frames: Optional[List[Frame]] = None, count: int = 0) -> None:
+if TYPE_CHECKING:
+    from crashtest.frame import Frame
+
+
+class FrameCollection(List[Any]):
+    def __init__(self, frames: list[Frame] | None = None, count: int = 0) -> None:
         if frames is None:
             frames = []
 
@@ -20,12 +25,12 @@ class FrameCollection(list):
     def is_repeated(self) -> bool:
         return self._count > 1
 
-    def increment_count(self, increment: int = 1) -> "FrameCollection":
+    def increment_count(self, increment: int = 1) -> FrameCollection:
         self._count += increment
 
         return self
 
-    def compact(self) -> List["FrameCollection"]:
+    def compact(self) -> list[FrameCollection]:
         """
         Compacts the frames to deduplicate recursive calls.
         """

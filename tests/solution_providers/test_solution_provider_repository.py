@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 
 from crashtest.contracts.base_solution import BaseSolution
 from crashtest.contracts.has_solutions_for_exception import HasSolutionsForException
@@ -13,7 +13,7 @@ class ExceptionSolutionProvider(HasSolutionsForException):
     def can_solve(self, exception: Exception) -> bool:
         return isinstance(exception, ExceptionProvidingException)
 
-    def get_solutions(self, exception: Exception) -> List[Solution]:
+    def get_solutions(self, exception: Exception) -> list[Solution]:
         return [
             BaseSolution("An exception solution", "An exception solution description")
         ]
@@ -38,43 +38,43 @@ class ExceptionWhichIsSolution(Exception, Solution):
         return "A solution description"
 
     @property
-    def documentation_links(self) -> List[str]:
+    def documentation_links(self) -> list[str]:
         return ["https://foo.bar"]
 
 
-def test_it_has_no_provider_by_default():
+def test_it_has_no_provider_by_default() -> None:
     repository = SolutionProviderRepository()
 
-    assert 0 == len(repository._solution_providers)
+    assert len(repository._solution_providers) == 0
 
 
-def test_providers_can_be_passed_to_constructor():
+def test_providers_can_be_passed_to_constructor() -> None:
     repository = SolutionProviderRepository()
 
-    assert 0 == len(repository._solution_providers)
+    assert len(repository._solution_providers) == 0
 
 
-def test_it_can_find_solutions():
+def test_it_can_find_solutions() -> None:
     repository = SolutionProviderRepository()
 
     repository.register_solution_provider(ExceptionSolutionProvider)
 
     solutions = repository.get_solutions_for_exception(ExceptionProvidingException())
 
-    assert 2 == len(solutions)
+    assert len(solutions) == 2
     solution1 = solutions[0]
     solution2 = solutions[1]
-    assert "A simple solution" == solution1.solution_title
-    assert "An exception solution" == solution2.solution_title
-    assert "A simple solution description" == solution1.solution_description
-    assert "An exception solution description" == solution2.solution_description
-    assert ["https://example.com"] == solution1.documentation_links
-    assert 0 == len(solution2.documentation_links)
+    assert solution1.solution_title == "A simple solution"
+    assert solution2.solution_title == "An exception solution"
+    assert solution1.solution_description == "A simple solution description"
+    assert solution2.solution_description == "An exception solution description"
+    assert solution1.documentation_links == ["https://example.com"]
+    assert len(solution2.documentation_links) == 0
 
     solutions = repository.get_solutions_for_exception(ExceptionWhichIsSolution())
 
-    assert 1 == len(solutions)
+    assert len(solutions) == 1
     solution1 = solutions[0]
-    assert "A solution" == solution1.solution_title
-    assert "A solution description" == solution1.solution_description
-    assert ["https://foo.bar"] == solution1.documentation_links
+    assert solution1.solution_title == "A solution"
+    assert solution1.solution_description == "A solution description"
+    assert solution1.documentation_links == ["https://foo.bar"]

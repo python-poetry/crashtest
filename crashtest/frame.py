@@ -1,11 +1,16 @@
-import inspect
+from __future__ import annotations
 
-from types import FrameType
-from typing import Dict
+from typing import TYPE_CHECKING
+
+
+if TYPE_CHECKING:
+    import inspect
+
+    from types import FrameType
 
 
 class Frame:
-    _content_cache: Dict[str, str] = {}
+    _content_cache: dict[str, str] = {}
 
     def __init__(self, frame_info: inspect.FrameInfo) -> None:
         self._frame = frame_info.frame
@@ -14,7 +19,7 @@ class Frame:
         self._filename = frame_info.filename
         self._function = frame_info.function
         self._lines = None
-        self._file_content = None
+        self._file_content: str | None = None
 
     @property
     def frame(self) -> FrameType:
@@ -47,7 +52,7 @@ class Frame:
             else:
                 if self._filename not in self.__class__._content_cache:
                     try:
-                        with open(self._filename) as f:
+                        with open(self._filename, encoding="utf-8") as f:
                             file_content = f.read()
                     except OSError:
                         file_content = ""
@@ -63,7 +68,9 @@ class Frame:
     def __hash__(self) -> int:
         return hash(self._filename) ^ hash(self._function) ^ hash(self._lineno)
 
-    def __eq__(self, other: "Frame") -> bool:
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Frame):
+            raise NotImplementedError
         return (
             self._filename == other.filename
             and self._function == other.function

@@ -9,30 +9,40 @@ readme = "README.md"
 homepage = "https://github.com/sdispater/crashtest"
 repository = "https://github.com/sdispater/crashtest"
 
+include = [
+  { path = "crashtest/py.typed" },
+]
+
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.4.1"
-black = "^19.10b0"
-pytest-cov = "^2.8.1"
-pre-commit = "^1.20.0"
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
+pre-commit = "^2.20.0"
 
 [tool.isort]
-line_length = 88
+profile = "black"
 force_single_line = true
 atomic = true
-include_trailing_comma = true
 lines_after_imports = 2
 lines_between_types = 1
 multi_line_output = 3
-use_parentheses = true
-not_skip = "__init__.py"
 skip_glob = ["*/setup.py"]
 filter_files = true
-
 known_first_party = "crashtest"
 known_third_party = ["pytest"]
+
+[tool.mypy]
+strict = true
+files = "crashtest, tests"
+
+[tool.coverage.report]
+exclude_lines = [
+  "if TYPE_CHECKING:",
+  "raise NotImplementedError",
+]
+
 [build-system]
 requires = ["poetry-core>=1.0.0a5"]
 build-backend = "poetry.core.masonry.api"

@@ -1,13 +1,13 @@
-from typing import List
+from __future__ import annotations
 
-from .solution import Solution
+from crashtest.contracts.solution import Solution
 
 
 class BaseSolution(Solution):
-    def __init__(self, title: str = None, description: str = None) -> None:
+    def __init__(self, title: str = "", description: str = "") -> None:
         self._title = title
         self._description = description
-        self._links = []
+        self._links: list[str] = []
 
     @property
     def solution_title(self) -> str:
@@ -18,5 +18,5 @@ class BaseSolution(Solution):
         return self._description
 
     @property
-    def documentation_links(self) -> List[str]:
+    def documentation_links(self) -> list[str]:
         return self._links
