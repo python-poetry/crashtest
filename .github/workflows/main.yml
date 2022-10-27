@@ -18,7 +18,7 @@ jobs:
       max-parallel: 4
       matrix:
         os: [Ubuntu, MacOS, Windows]
-        python-version: [3.7, 3.8, 3.9, "3.10", "3.11-dev"]
+        python-version: [3.7, 3.8, 3.9, "3.10", "3.11"]
 
     defaults:
       run:
@@ -67,11 +67,6 @@ jobs:
           [ "$(command -v timeout)" ] || function timeout() { perl -e 'alarm shift; exec @ARGV' "$@"; }
           # Using `timeout` is a safeguard against the Poetry command hanging for some reason.
           timeout 10s poetry run pip --version || rm -rf .venv
-
-      # XXX: https://github.com/pypa/pip/issues/11352 causes random failures -- remove once fixed in a release.
-      - name: Upgrade pip on 3.11 for macOS
-        if: ${{ matrix.python-version == '3.11-dev' && matrix.os == 'macOS' }}
-        run: poetry run pip install git+https://github.com/pypa/pip.git@fbb7f0b293f1d9289d8c76a556540325b9a172b2
 
       - name: Install dependencies
         shell: bash
