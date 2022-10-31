@@ -7,7 +7,7 @@ from crashtest.frame_collection import FrameCollection
 
 
 class Inspector:
-    def __init__(self, exception: Exception):
+    def __init__(self, exception: BaseException):
         self._exception = exception
         self._frames: FrameCollection | None = None
         self._outer_frames = None
@@ -15,7 +15,7 @@ class Inspector:
         self._previous_exception = exception.__context__
 
     @property
-    def exception(self) -> Exception:
+    def exception(self) -> BaseException:
         return self._exception
 
     @property
