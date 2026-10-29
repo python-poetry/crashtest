@@ -11,6 +11,7 @@ repository = "https://github.com/sdispater/crashtest"
 
 include = [
   { path = "crashtest/py.typed" },
+  { path = "tests", format = "sdist" },
 ]
 
 [tool.poetry.dependencies]
